@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block data %}
+<center>
+<form method="POST" action="/add_task">
+    {% csrf_token %}
+    <h2>--------------Add new task in To-Do-List--------------</h2>
+    <hr><br>
+    <div>
+    <table>
+        <tr>
+            <th>Task:</th>
+            <td><input type="text" name="task" /></td>
+        </tr>
+        <tr>
+            <th>Category:</th>
+            <td><input type="text" name="category" /></td>
+        </tr>
+        <tr>
+            <th>Due Date:</th>
+            <td><input type="date" name="duedate" /></td>
+        </tr>
+        <tr>
+            <th>Note:</th>
+            <td><textarea name="note" rows="2" cols="20" class="ta"></textarea></td>
+        </tr>
+        <tr>
+            <th>Status:</th>
+            <td>
+            <select name="progress">
+            <option value="Completed.">Completed</option>
+            <option value="Partly Completed.">Partly Completed</option>
+            <option value="Incomplete.">Incomplete</option>
+            </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center;">  
+                <input type="submit" name="send" value="Save Task" />          
+            </td>
+        </tr>
+    </table>
+</div>
+<br>
+<a href="/">&#128220; View To-Do-List</a>
+</form>
+</center>
+
+{% endblock data%}

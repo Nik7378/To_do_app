@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block data %}
+<center>
+<form method="POST" action="/edit/{{data.id}}">
+    {% csrf_token %}
+    <h2>--------------Update task in To-Do-List--------------</h2>
+    <hr><br>
+<div>
+    <table>
+        <tr>
+            <th>Task:</th>
+            <td><input type="text" name="task" value={{data.task}}></td>
+        </tr>
+        <tr>
+            <th>Category:</th>
+            <td><input type="text" name="category" value={{data.category}}></td>
+        </tr>
+        <tr>
+            <th>Due Date:<br>(yyyy-mm-dd)</th>
+            <td><input type="text" name="duedate" value="{{data.duedate|date:"Y-m-d"}}"></td>
+        </tr>
+        <tr>
+            <th>Note:</th>
+            <td><textarea name="note" rows="2" cols="20" class="ta">{{data.note}}</textarea></td>
+        </tr>
+        <tr>
+            <th>Status:</th>
+            <td>
+            <select name="progress">
+            <option value="{{data.progress}}">Current:{{data.progress}}</option>
+            <option value="Completed.">Completed</option>
+            <option value="Partly Completed.">Partly Completed</option>
+            <option value="Incomplete.">Incomplete</option>
+            </select>
+            </td>
+            <!-- <td><input type="text" name="progress" value={{data.progress}}></td> -->
+        </tr>
+        <tr>
+            <th>Last Modified:</th>
+            <td><input type="text" value="{{data.modified|date:"d/m/Y - h:i A"}}"></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center;">                
+                <input type="submit" name="send" value="Update Task" />
+            </td>
+        </tr>
+    </table>
+</div>
+<br>
+<a href="/task">+ Add New Task</a>
+<a href="/">&#128220; View To-Do-List</a>
+</form>
+</center>
+{% endblock data%}

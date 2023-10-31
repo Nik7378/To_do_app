@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block data %}
+<center>
+    <h2>------------Admin Dashboard For To-Do-List--------------</h2>
+    <hr>
+    <br>
+    <a href="/task">+ Add New Task</a> 
+</center>
+<br><br>
+{% for d in data %}
+<div>
+<table>
+        <tr>
+            <th>Task</th>
+            <td>{{d.task}}</td>    
+        </tr>
+        <tr>
+            <th>Category</th>
+            <td>{{d.category}}</td>
+        </tr>
+        <tr>
+            <th>Due Date</th>
+            <td>{{d.duedate}}</td>
+        </tr>
+        <tr>
+            <th>Note</th>
+            <td><textarea name="note" rows="2" cols="20" readonly>{{d.note}}</textarea></td>    
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td>{{d.progress}}</td>
+        </tr>
+        <tr>
+            <th>Created At</th>
+            <td>{{d.created|date:"d/m/Y - h:i A"}}</td>
+            
+        </tr>
+        <tr>
+            <th>Last Modified At</th>
+            <td>{{d.modified|date:"d/m/Y - h:i A"}}</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;" colspan="2">
+                <a href="/edit/{{d.id}}">Update &#128395;</a>
+                <a href="/delete/{{d.id}}">Delete &#128465;</a>
+            </td> 
+        </tr>
+</table>
+</div>
+{% endfor %}
+
+<!-- <center>
+<h2>------------Admin Dashboard For To-Do-List--------------</h2>
+<br>
+<table border="1" align="center" >
+    <tr>
+        <th>Task</th>
+        <th>Category</th>
+        <th>Due Date</th>
+        <th>Note</th>
+        <th>Status</th>
+        <th>Created At</th>
+        <th>Last Modified At</th>
+        <th>Update Task</th>
+        <th>Delete Task</th>
+    </tr>
+    {% for d in data %}
+    <tr>
+        <td>{{d.task}}</td>
+        <td>{{d.category}}</td>
+        <td>{{d.duedate}}</td>
+        <td><textarea name="note" rows="3" cols="21">{{d.note}}</textarea></td>
+        <td>{{d.progress}}</td>
+        <td>{{d.created|date:"d/m/Y - h:i A"}}</td>
+        <td>{{d.modified|date:"d/m/Y - h:i A"}}</td>
+        <td><a href="/edit/{{d.id}}">Update</a></td>
+        <td><a href="/delete/{{d.id}}">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+<br>
+<a href="/task">Add New Task</a> 
+</center> -->
+
+{% endblock data%}
